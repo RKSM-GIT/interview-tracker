@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interview Tracker</title>
+    <link rel="stylesheet" href="css/Grid.css" />
+    <link rel="stylesheet" href="css/styles_topics.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <%- include("./partials/navCSS.ejs") %>
+    <%- include("./partials/footerCSS.ejs") %>
+    <%- include("./partials/formCSS.ejs") %>
+  </head>
+
+  <body>
+    <!-- Nav Bar -->
+    <%- include("./partials/nav.ejs") %>
+
+    <h2 class="heado">Choose A Topic</h2>
+    
+    <!-- Add button -->
+    <div class="row back">
+      <a href="#" class="button" id="myBtn">Add Question</a>
+    </div>
+    <!-- Modal Form -->
+    <%- include("./partials/form.ejs") %> 
+
+    <!-- Topics -->
+    <section class="topics">
+      
+      <ul class="row">
+        <%  approved_que.topics.forEach( i => {   %>
+        <%    let n = i.questions.length;         %>
+        <%    if(n !== 0){                        %>
+        <li>
+          <h3><a href="/Interview-Prep/<%= i.title %>"><%= i.title %></a></h3>
+          <div>
+            <p>
+              <ion-icon name="terminal"></ion-icon><%= n %>
+              Question<% if(n != 1){ %>s<% } %>
+            </p>
+          </div>
+        </li>
+        <%    }   %>
+        <%  });   %>
+      </ul>
+      
+
+    </section>
+
+    <!-- Footer -->
+    <%- include("./partials/footer.ejs") %>
+
+  </body>
+
+  <!--****************JavaScript*******************-->
+  <script>
+    const form = document.querySelector("form");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      //Selecting fields
+      const topic = form.topic.value;
+      const name = form.name.value;
+      const website = form.website.value;
+      const url = form.url.value;
+
+      try {
+        const res = await fetch("/Interview-Prep", {
+          method: "POST",
+          body: JSON.stringify({ topic,name, website, url }),
+          headers: { "Content-Type": "application/json" },
+        });
+        const data = await res.json();
+        location.assign("/Interview-Prep");
+
+      } catch (err) {
+        console.log(err);
+      }
+    });
+  </script> 
+  <script src="../js/modalForm.js"></script>
+  <%- include("./partials/ion-icons-script.ejs") %>
+</html>

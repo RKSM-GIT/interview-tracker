@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interview Tracker</title>
+    <link rel="stylesheet" href="css/Grid.css" />
+    <link rel="stylesheet" href="css/styles_appr_que.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <%- include("./partials/navCSS.ejs") %>
+    <%- include("./partials/footerCSS.ejs") %>
+    <%- include("./partials/notFoundCSS.ejs") %>
+  </head>
+
+  <body>
+    <!-- Nav Bar -->
+    <%- include("./partials/nav.ejs") %>
+
+    
+
+    <!-- Approve Experience -->
+    <section class="main_section">
+      <h2>Approve Questions</h2>
+
+      <div class="row back">
+        <a href="/admin" class="button"><ion-icon name="arrow-back-outline"></ion-icon>Back</a>
+      </div>
+
+
+      <div class="row">
+        <%  let ct = 0;                                 %>
+        <%  not_approved_que.topics.forEach(i => {      %>
+        <%    i.questions.forEach(que => {             %>
+
+        <div id="Box-<%= ct %>" class="box">
+          <ion-icon name="caret-forward-outline"></ion-icon><h4 class="heyTitle"><%= i.title %></h4>
+          <div class="innerBox">
+            <img alt="<%= que.platform %>" src="../img/platforms/<%= que.platform %>.png"></img>
+            <div class="info1"><%= que.name %></div>
+            <div class="info2"><%= que.platform %></div>
+            <a href="<%= que.link %>" target="_blank" class="solve">Visit Question</a>
+            <div class="hoverbox arrow-top hidden"><%= que.link %></div>
+          </div>
+          <br>
+          <a href="#" class="Approve1">Approve Question</a>
+          <a href="#" class="Approve2">Reject Question</a>
+        </div>
+        <%      ct++; %>
+        <%    })      %>
+        <%  })        %>
+
+        <!-- Not Found -->
+        <%  if(ct==0){                                      %>
+          <%- include("./partials/notFound.ejs") %>
+        <%  }                                               %>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <%- include("./partials/footer.ejs") %>
+
+  </body>
+
+  
+
+  <!--****************JavaScript*******************-->
+  <script>
+
+    const boxes = document.querySelectorAll(".box");
+    boxes.forEach(box => {
+      const approve = box.querySelector(".Approve1");
+      const reject = box.querySelector(".Approve2");
+      const name = box.querySelector(".info1").textContent;
+      const platform = box.querySelector(".info2").textContent;
+      const title = box.querySelector(".heyTitle").textContent;
+      const link = box.querySelector(".solve").getAttribute("href");
+
+      approve.addEventListener("click", async (e) => {
+        e.preventDefault();
+        
+        try {
+          const res = await fetch("/approve_que", {
+            method: "POST",
+            body: JSON.stringify({ title,name,platform,link }),
+            headers: { "Content-Type": "application/json" },
+          });
+          const data = await res.json();
+          location.assign("/approve_que");
+  
+        } catch (err) {
+          console.log(err);
+        }
+      });
+
+      reject.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        try {
+          const res = await fetch("/reject_que", {
+            method: "POST",
+            body: JSON.stringify({ title,name,platform,link }),
+            headers: { "Content-Type": "application/json" },
+          });
+          const data = await res.json();
+          location.assign("/approve_que");
+  
+        } catch (err) {
+          console.log(err);
+        }
+      });
+
+      
+    });
+  </script>
+  <%- include("./partials/ion-icons-script.ejs") %>
+  <script src="../js/hoverlink.js"></script>
+</html>

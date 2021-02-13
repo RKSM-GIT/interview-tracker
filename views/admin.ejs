@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interview Tracker</title>
+    <link rel="stylesheet" href="css/Grid.css" />
+    <link rel="stylesheet" href="css/styles_admin.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <%- include("./partials/navCSS.ejs") %>
+    <%- include("./partials/footerCSS.ejs") %>
+  </head>
+
+  <body>
+    <!-- Nav Bar -->
+    <%- include("./partials/nav.ejs") %>
+
+    <!-- Add/Remove Admins -->
+    <section class="boxx">
+      <div class="row">
+        <h2>Add/Remove Admins</h2>
+        <a class="buttons" href="/add">Add Admins</a>
+        <a class="buttons" href="/remove">Remove Admins / View Current Admins</a>
+      </div>
+    </section>
+
+    <section class="boxx">
+      <div class="row">
+        <h2>Approve</h2>
+        <a class="buttons" href="/approve_que">Approve Questions</a>
+        <a class="buttons" href="/approve_exp">Approve Interview Experiences</a>
+      </div>
+    </section>
+    
+    <!-- Footer -->
+    <%- include("./partials/footer.ejs") %>
+
+  </body>
+
+
+
+  <!--****************JavaScript*******************-->
+  <%- include("./partials/ion-icons-script.ejs") %>
+  
+</html>

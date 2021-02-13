@@ -1,0 +1,155 @@
+<style>
+
+a {
+  text-decoration: none;
+}
+/* Header */
+
+header {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(../img/login.jpg);
+  background-size: cover;
+  min-height: 18vh;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/**** Nav ****/
+
+nav {
+  position: relative;
+  color: #fff;
+  backdrop-filter: blur(5px);
+  height: 100%;
+  z-index: 2;
+}
+
+nav h2:first-child {
+  float: left;
+  margin-top: 20px;
+  font-size: 180%;
+  font-weight: 300;
+  padding-top: 30px;
+}
+
+nav p {
+  color: #9b59b6;
+  display: inline;
+}
+
+nav .btn3:link,
+nav .btn3:visited {
+  color: #fff;
+  transition: color 0.3s;
+}
+
+nav .btn3:hover,
+nav .btn3:active {
+  color: #9b59b6;
+}
+/* list */
+
+
+nav ul {
+  list-style: none;
+  float: right;
+  margin-top: 53px;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 30px;
+}
+
+.bttn2:link,
+.bttn2:visited {
+  display: block;
+  color: white;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+  transition: border-bottom 0.25s;
+}
+
+.bttn2:hover,
+.bttn2:active {
+  border-bottom: 2px solid #b874d3;
+}
+
+.wel {
+  color: #fff;
+  display: inline;
+}
+.nm {
+  color: rgb(255, 164, 44);
+  display: inline;
+  text-transform: capitalize;
+}
+
+/** Drop Down **/
+
+nav .ham{
+  font-size: 180%;
+  color: #fff;
+  vertical-align: middle;
+}
+
+.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover > a {
+  color: #9b59b6;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: color 0.2s, background-color 0.2s;
+}
+.dropdown-content a:hover {
+  color: #fff;
+  background-color: #9b59b6;
+}
+
+/*****************************/
+/******** Responsive *********/
+/*****************************/
+
+/********* main-stuff ************/
+@media only screen and (max-width: 1000px) {
+  nav ul {
+    float: none;
+    padding-top: 60px;
+    padding-bottom: 20px;
+  }
+  nav {
+    padding-left: 23%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  nav {
+    padding-left: 20%;
+  }
+}
+@media only screen and (max-width: 700px) {
+  nav {
+    padding-left: 15%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  nav {
+    padding-left: 3%;
+  }
+}
+
+
+</style>

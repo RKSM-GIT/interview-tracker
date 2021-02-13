@@ -1,0 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #fff;
+  color: #555;
+  font-family: "Lato", "Arial", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+}
+
+/**** Recurring ****/
+
+a {
+  text-decoration: none;
+}
+
+.row {
+  width: 80%;
+  margin: 0 auto;
+}
+
+section h2 {
+  font-size: 180%;
+  font-weight: 300;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 30px;
+}
+section h2:after {
+  display: block;
+  background-color: #705c79;
+  height: 2px;
+  width: 10%;
+  content: " ";
+  margin: 20px auto;
+}
+
+/**** General CSS ****/
+.add {
+  padding-top: 100px;
+}
+
+.box {
+  padding-top: 16px;
+  font-weight: 400;
+  min-height: 80px;
+  border-top: 2px rgb(202, 202, 202) solid;
+  border-bottom: 2px rgb(202, 202, 202) solid;
+  margin-top: 30px;
+}
+
+.box div{
+  display: inline-block;
+}
+.left{
+  text-align: center;
+  float: left;
+  width: 20%;
+  margin: 10px 0 0 30px;
+}
+.two{
+  margin-left: 15%;
+}
+.right{
+  text-decoration: none;
+  text-align: right;
+  float: right;
+  margin-right: 30px;
+  color: #fff;
+  background-color: darkorange;
+  padding: 10px 50px;
+  transition: background-color 0.3s;
+}
+.right:hover{
+  background-color: rgb(206, 31, 31);
+}
+
+
+/**** Back ****/
+.back a:link,
+.back a:visited {
+  padding: 12px 18px;
+  background-color: rgb(90, 90, 148);
+  text-decoration: none;
+  color: #fff;
+  font-size: 120%;
+  transition: background-color 0.3s;
+}
+
+.back ion-icon{
+  margin-right: 10px;
+}
+
+.back a:hover,
+.back a:active{
+  background-color: rgb(57, 57, 146);
+}
+
+/*****************************/
+/******** Responsive *********/
+/*****************************/
+
+/********* back ************/
+
+@media only screen and (max-width: 1147px) {
+  .back{
+    padding-left: 0;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .back{
+    padding-top: 30px;
+    padding-left: 28%;
+  }
+}
+
+/********* main-stuff ************/
+
+@media only screen and (max-width: 1100px){
+  .left,.right{
+    float: none;
+    width: 90%;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  .ffff{
+    text-align: center;
+
+  }
+
+  .right{
+    display: block;
+    width: 40%;
+    margin: 2px auto;
+    padding: 10px 0;
+    margin-bottom: 20px;
+  }
+}

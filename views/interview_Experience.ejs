@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interview Tracker</title>
+    <link rel="stylesheet" href="css/Grid.css" />
+    <link rel="stylesheet" href="css/styles_interviewExp.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <%- include("./partials/navCSS.ejs") %>
+    <%- include("./partials/footerCSS.ejs") %>
+    <%- include("./partials/formCSS.ejs") %>
+  </head>
+
+  <body>
+    <!-- Nav Bar -->
+    <%- include("./partials/nav.ejs") %>
+
+    <h2 class="heading">Choose a Company</h2>
+
+    <!-- Add button -->
+    <div class="row back">
+      <a href="#" class="button" id="myBtn">Add Experience</a>
+    </div>
+    <!-- Modal Form -->
+    <%- include("./partials/form2.ejs") %> 
+
+    <!-- Companies -->
+    <section class="mainSection">
+      <ul class="row">
+
+    <%  exp.companies.forEach(i => {        %>
+    <%    let ct = 0;                       %>
+    <%    i.experiences.forEach(e => {   %>
+    <%      if(e.approved){                 %>
+    <%        ct++;                         %>
+    <%      }                               %>
+    <%    });                               %>
+
+    <%    if(ct)  {                         %>
+    
+        <li>
+          <a href="/interview-exp/<%= i.companyName %>" class="top"><img src="../img/companies/<%= i.companyName %>.png"></a>
+          <div>
+            <ion-icon name="chevron-forward"></ion-icon> <p>Company : <%= i.companyName %></p>
+          </div>
+          <div>
+            <ion-icon name="checkmark-done"></ion-icon> <p><%= ct %> Interview Experience<% if(ct !== 1) { %>s<% } %></p>
+          </div>
+        </li>
+
+    <%    }   %>
+    <%  });   %>
+      </ul>
+    </section>
+
+    <!-- Footer -->
+    <%- include("./partials/footer.ejs") %>
+
+  </body>
+
+  
+
+  <!--****************JavaScript*******************-->
+  <script src="../js/modalForm.js"></script>
+  <script>
+    const form = document.querySelector("form");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      
+      const companyName = form.companyName.value;
+      const title = form.title.value;
+      const experience = form.experience.value;
+      const email = "<%= user.email %>"; 
+      try {
+        const res = await fetch("/interview-exp", {
+          method: "POST",
+          body: JSON.stringify({ companyName,title,experience,email }),
+          headers: { "Content-Type": "application/json" },
+      });
+        const data = await res.json();
+        location.assign("/interview-exp");
+
+      } catch (err) {
+        console.log(err);
+      }
+    
+
+    });
+  </script>
+  <%- include("./partials/ion-icons-script.ejs") %>
+</html>

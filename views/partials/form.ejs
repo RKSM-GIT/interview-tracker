@@ -1,0 +1,88 @@
+
+<section id="myModal" class="modal">
+<!--  form  -->
+<form class="row form-row">
+
+  <span class="close">&times;</span>
+  <div>
+    <h2>Send Question For Approval</h2>
+  </div>
+
+  <!--    -->
+  <div class="forms">
+    <div class="span-1-3">
+        <label for="topic">Topic</label>
+    </div>
+    <div class="span-2-3">
+        <select name="topic" id="topic" required>
+            <option value="Arrays" selected>Arrays</option>
+            <option value="Searching & Sorting">Searching & Sorting</option>
+            <option value="Matrix">Matrix</option>
+            <option value="Strings">Strings</option>
+            <option value="Hashing">Hashing</option>
+            <option value="Bit Manipulation">Bit Manipulation</option>
+            <option value="Linked List">Linked List</option>
+            <option value="Stack">Stack</option>
+            <option value="Queue">Queue</option>
+            <option value="Trees">Trees</option>
+            <option value="Heaps">Heaps</option>
+            <option value="Graphs">Graphs</option>
+            <option value="Greedy Algorithms">Greedy Algorithms</option>
+            <option value="Dynamic Programming">Dynamic Programming</option>
+            <option value="Recursion & Backtracking">Recursion / Backtracking</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+  </div>
+
+  <div class="forms">
+      <div class="span-1-3">
+          <label for="name">Question Name</label>
+      </div>
+      <div class="span-2-3">
+          <input type="text" name="name" id="name" placeholder="Question Name" required>
+      </div>
+  </div>
+
+  <!-- Question site  -->
+  <div class="forms">
+    <div class="span-1-3">
+        <label for="website">Question Platform</label>
+    </div>
+    <div class="span-2-3">
+        <select name="website" id="website" required>
+            <option value="leetcode" selected>Leetcode</option>
+            <option value="interviewBit">Interview Bit</option>
+            <option value="hackerRank">HackerRank</option>
+            <option value="spoj">Spoj</option>
+            <option value="gfg">Geeks For Geeks</option>
+            <option value="topcoder">Topcoder</option>
+            <option value="hackerEarth">Hacker Earth</option>
+            <option value="codechef">Code Chef</option>
+            <option value="codeforces">Codeforces</option>
+            <option value="other">Other</option>
+        </select>
+    </div>
+  </div>
+   
+  <!-- Website url -->
+  <div class="forms">
+    <div class="span-1-3">
+      <label for="url">Question URL</label>
+    </div>
+    <div class="span-2-3">
+      <input type="url" name="url" id="url" placeholder="Question URL" required>
+    </div>
+  </div>
+
+  <!-- Submit -->
+  <div class="forms">
+    <div class="span-1-3">
+        <label>&nbsp;</label>
+    </div>
+    <div class="span-2-3">
+        <input type="submit" value="Send Question">
+    </div>
+  </div>
+</form>
+</section>

@@ -1,0 +1,28 @@
+<header>
+  <nav class="row">
+    <h2><a class="btn3" href="/">INTERVIEW TRACKER</a></h2>
+    <ul>
+      <% if(user) {%>
+      <li>
+        <p class="wel">Welcome,&nbsp;</p>
+        <p class="nm"><%= user.name %></p>
+      </li>
+      <li><a class="bttn2" href="/logout">Log Out</a></li>
+      <li class="dropdown">
+        <a class="ham"><ion-icon name="menu-outline"></ion-icon></a>
+        <div class="dropdown-content">
+          <a href="/">Home</a>
+          <a href="/Interview-Prep">Interview Preparation</a>
+          <a href="/interview-exp">Interview Experience</a>
+          <a href="/contact">Contact Us</a>
+
+          <% if(user.isAdmin) { %><a href="/admin">Admin Panel</a><% } %>
+        </div>
+      </li>
+      <% } else { %>
+      <li><a class="bttn2" href="/login">Login</a></li>
+      <li><a class="bttn2" href="/signup">Sign Up</a></li>
+      <% } %>
+    </ul>
+  </nav>
+</header>

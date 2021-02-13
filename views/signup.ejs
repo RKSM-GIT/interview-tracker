@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interview Tracker</title>
+    <link rel="stylesheet" href="/css/Grid.css" />
+    <link rel="stylesheet" href="/css/styles_signup.css" />
+  </head>
+
+  <body>
+    
+
+    <!-- Right Region -->
+    <section class="right">
+      <div class="space"></div>
+      <div class="main-box">
+        <h2><ion-icon class="icon2" name="log-in"></ion-icon>Sign Up</h2>
+        <form enctype="multipart/form-data">
+
+          <!-- Name -->
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Enter Your Name"
+            required
+          /><br />
+          <div class="name error"></div>
+
+          <!-- Email -->
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Enter Your Email"
+            required
+          /><br />
+          <div class="email error"></div>
+
+          <!-- Password -->
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter Your Password"
+            required
+          /><br />
+          <div class="error"></div>
+
+          <!-- Year -->
+          <select name="year" id="year" required>
+            <option value="1st year">1st Yearite</option>
+            <option value="2nd year">2nd Yearite</option>
+            <option value="3rd year" selected>3rd Yearite</option>
+            <option value="4th year">4th Yearite</option>
+            <option value="graduated">Graduated</option>
+          </select><br /><div class="error"></div>
+
+          <!-- Branch -->
+          <select name="branch" id="branch" required>
+            <option value="ComputerScience" selected>ComputerScience</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Mathematics&Computing">Mathematics&Computing</option>
+            <option value="Electrical">Electrical</option>
+            <option value="Mechanical">Mechanical</option>
+            <option value="Civil">Civil</option>
+            <option value="Chemical">Chemical</option>
+            <option value="Biotech">Biotech</option>
+            <option value="Mathematics">Mathematics</option>
+            <option value="Physics">Physics</option>
+            <option value="Humanities">Humanities</option>
+            <option value="Design">Design</option>
+          </select><br /><div class="error"></div>
+
+          <!-- About -->
+          <textarea id="about" name="about" placeholder="Write something about yourself" required></textarea>
+
+          <!-- Pic -->
+          <div class="label"><label for="pic">Choose a profile pic : </label></div>
+          <div class="picdv"><input type="file" id="pic" name="pic" accept="image/png, image/jpeg" required></div>
+
+          <!-- Submit -->
+          <input type="submit" value="Sign Up" />
+
+        </form>
+
+
+        <!-- To different url -->
+        <div class="route">
+          <a class="btn" href="/login">Login</a>
+          &nbsp; | &nbsp;
+          <a class="btn" href="/">Home</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Left Region -->
+    <section class="left">
+      <div>
+        <ul>
+          <li>
+            <ion-icon class="icon1" name="people"></ion-icon>Community Learning
+          </li>
+          <li>
+            <ion-icon class="icon1" name="happy"></ion-icon>Interview Experiences
+          </li>
+          <li>
+            <ion-icon class="icon1" name="pencil"></ion-icon>Topic-wise Learning
+          </li>
+        </ul>
+      </div>
+    </section>
+  </body>
+
+  <!--****************JavaScript*******************-->
+  <script>
+    const form = document.querySelector("form");
+    const nameError = document.querySelector(".name.error");
+    const emailError = document.querySelector(".email.error");
+    const passwordError = document.querySelector(".password.error");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      //Selecting email and password
+      const name = form.name.value;
+      const email = form.email.value;
+      const password = form.password.value;
+      const year = form.year.value;
+      const branch = form.branch.value;
+      const about = form.about.value;
+      const photo = form.pic.files[0];
+      const formData = new FormData();
+      formData.append('profile', photo);
+      formData.append('name', name);
+
+      try {
+        const resIMG = await fetch("/signupIMG", {
+          method: "POST",
+          //body: JSON.stringify({ name, email, password }),
+          body: formData,
+        });
+        const imgJSON = await resIMG.json();
+        const pic = "/img/users/" + imgJSON.img;
+
+        const res = await fetch("/signup", {
+          method: "POST",
+          body: JSON.stringify({ name, email, password, year, branch, about, pic}),
+          headers: { "Content-Type": "application/json" },
+        });
+
+        const data = await res.json();
+        if (data.errors) {
+          nameError.textContent = data.errors.name;
+          emailError.textContent = data.errors.email;
+          passwordError.textContent = data.errors.password;
+        } else if (data.user) {
+          location.assign("/");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    });
+  </script>
+  <%- include("./partials/ion-icons-script.ejs") %>
+</html>

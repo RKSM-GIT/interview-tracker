@@ -1,0 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #fff;
+  color: #555;
+  font-family: "Lato", "Arial", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+}
+
+/**** Recurring ****/
+
+a {
+  text-decoration: none;
+}
+
+.row {
+  width: 80%;
+  margin: 0 auto;
+}
+
+section h2 {
+  font-size: 180%;
+  font-weight: 300;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 30px;
+}
+section h2:after {
+  display: block;
+  background-color: #705c79;
+  height: 2px;
+  width: 10%;
+  content: " ";
+  margin: 20px auto;
+}
+
+/**** General CSS ****/
+.boxx {
+  padding-top: 100px;
+}
+
+
+.buttons {
+  padding: 16px;
+  text-align: center;
+  font-weight: 400;
+  text-decoration: none;
+  color: #f4f4f4;
+  display: block;
+  margin: 20px 0;
+  width: 100%;
+  background-color: darkorange;
+  height: 60px;
+  border-radius: 200px;
+  transition: background-color 0.3s;
+}
+.buttons:hover {
+  background-color:#705c79;
+}

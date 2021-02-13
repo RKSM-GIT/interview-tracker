@@ -1,0 +1,174 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+}
+
+/**** Recurring ****/
+
+/**** Left ****/
+.left {
+  float: left;
+  width: 50%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+    url(../img/login.jpg);
+  height: 100vh;
+  background-size: 50%;
+  background-size: cover;
+  background-position: center right;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.left div {
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  text-align: center;
+  transform: translate(0%, -50%);
+  font-size: 140%;
+  font-weight: 100;
+}
+
+.left ul {
+  list-style: none;
+}
+
+.left li {
+  margin: 40px 0;
+  color: #fff;
+}
+
+.icon1 {
+  margin-right: 30px;
+  color: #d297e9;
+  font-size: 160%;
+  vertical-align: middle;
+}
+
+/**** Right ****/
+.right {
+  float: right;
+  width: 50%;
+  position: relative;
+  height: 100vh;
+  background-color: #fff;
+}
+
+.main-box {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.main-box h2 {
+  color: #9b59b6;
+  font-weight: 300;
+  letter-spacing: 1px;
+  word-spacing: 4px;
+  margin-bottom: 10px;
+}
+
+.icon2 {
+  vertical-align: middle;
+  font-size: 160%;
+  margin-right: 30px;
+}
+
+*:focus {
+  outline: none;
+}
+
+input,select,textarea {
+  width: 98%;
+  padding: 2%;
+  margin: 5px 0;
+  color: #777;
+}
+
+input[type="submit"] {
+  color: #fff;
+  background-color: #9b59b6;
+  border-radius: 200px;
+  transition: background-color 0.2s;
+  border: 0;
+  margin-top: 20px;
+  
+}
+
+input[type="submit"]:hover {
+  background-color: #592c6b;
+}
+
+label{
+  float: left;
+  font-size: 90%;
+  margin-right: 20px;
+  padding-top: 10px;
+  font-weight: 300;
+  color: #555;
+  margin-left: 10px;
+}
+
+.picdv {
+  float: left;
+  vertical-align: middle;
+}
+
+.space {
+  height: 8%;
+  width: 80%;
+}
+
+.error {
+  color: #ff004c;
+  font-size: 70%;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+/**** routes *****/
+.route {
+  padding: 2.5% 0.5%;
+  color: #a286af;
+}
+.btn:link,
+.btn:visited {
+  text-decoration: none;
+  color: #a286af;
+}
+.btn:hover,
+.btn:active {
+  color: #9b59b6;
+}
+
+/*****************************/
+/******** Responsive *********/
+/*****************************/
+
+
+
+/********* main ************/
+
+@media only screen and (max-width: 900px) {
+  .left,.right {
+    float: none;
+    width: 100%;
+  }
+  .left {
+    height: 62vh;
+    background-position: center;
+  }
+  .right {
+    padding-top: 30px;
+    margin-bottom: 180px;
+  }
+}

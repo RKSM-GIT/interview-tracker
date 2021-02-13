@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interview Tracker</title>
+    <link rel="stylesheet" href="/css/Grid.css" />
+    <link rel="stylesheet" href="/css/styles_appr_exp.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <%- include("./partials/navCSS.ejs") %>
+    <%- include("./partials/footerCSS.ejs") %>
+    <%- include("./partials/notFoundCSS.ejs") %>
+    <%- include("./partials/formCSS.ejs") %>
+  </head>
+
+  <body>
+    <!-- Nav Bar -->
+    <%- include("./partials/nav.ejs") %>
+
+    
+
+    <!-- Approve Experience -->
+    <section class="main_section">
+      <h2><%= companyN %> Experiences</h2>
+
+      <!-- Back button -->
+      <div class="row back">
+        <a href="/interview-exp" class="button"><ion-icon name="arrow-back-outline"></ion-icon>Back</a>
+        <a href="#" class="button" id="myBtn">Add Experience</a>
+      </div>
+
+      <div class="clr"></div>
+      <!-- Modal Form -->
+      <%- include("./partials/form2.ejs") %> 
+
+
+      <div class="row">
+
+      <%  let ct = 0;       %>
+      <%  for(let j=0; j< exp.companies.length; j++){   %>
+      <%    if(exp.companies[j].companyName === companyN){               %>
+      <%    let comp = exp.companies[j];            %>
+      <%    comp.experiences.forEach( i => {       %>
+      <%      let u;      %>
+      <%      if(i.approved){       %>
+      <%        for(let j=0; j<allUsers.length; j++){       %>
+      <%          if(allUsers[j].email === i.author){       %>
+      <%            u = allUsers[j];       %>
+      <%            break;       %>
+      <%          }       %>
+      <%        }       %>
+
+      
+        <div id="box-<%= ct %>" class="box">
+          <div class="row1">
+            <div style="background-image : url('<%= u.pic %>');" class="profilePic"></div>
+            <div class="box1">
+              <h3 class="title"><%= i.title %></h3>
+              <h4 class="name"><%= u.name %></h4>
+            </div>
+          </div>
+          <div class="clr"></div>
+          <div class="midrow"><p>Year : <%= u.year %></p><p>Branch : <%= u.branch %></p></div>
+          <div class="row2">
+            <div class="longcopy">
+              <%= i.experience %>
+            </div>
+            <button class="hidden">See More</button>
+            <br>
+          </div>
+        </div>
+      <%      ct++;       %>
+      <%      }        %>
+      <%    });       %>
+      <%    break }   %>
+      <%  }       %>
+
+      <!-- Not Found -->
+      <%  if(ct==0){                                      %>
+        <%- include("./partials/notFound.ejs") %>
+      <%  }                                               %>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <%- include("./partials/footer.ejs") %>
+
+  </body>
+
+  
+
+  <!--****************JavaScript*******************-->
+  <script src="../js/modalForm.js"></script>
+  <script src="/js/see_more.js"></script>
+  <script>
+    const form = document.querySelector("form");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      
+      const companyName = form.companyName.value;
+      const title = form.title.value;
+      const experience = form.experience.value;
+      const email = "<%= user.email %>"; 
+      try {
+        const res = await fetch("/interview-exp", {
+          method: "POST",
+          body: JSON.stringify({ companyName,title,experience,email }),
+          headers: { "Content-Type": "application/json" },
+      });
+        const data = await res.json();
+        location.assign("/interview-exp");
+
+      } catch (err) {
+        console.log(err);
+      }
+    
+
+    });
+  </script>
+  <%- include("./partials/ion-icons-script.ejs") %>
+</html>

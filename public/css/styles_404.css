@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #fff;
+  color: #555;
+  font-family: "Lato", "Arial", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+}
+
+/**** Recurring ****/
+
+a {
+  text-decoration: none;
+}
+
+.row {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/**** 404 ****/
+
+h2{
+  color: rgb(226, 80, 80);
+  letter-spacing: 1px;
+  word-spacing: 4px;
+  font-size: 350%;
+  margin-top: 120px;
+  text-align: center;
+}
+
+h3 {
+  font-size: 150%;
+  margin-bottom: 80px;
+  text-align: center;
+  padding: 1%;
+  text-transform: capitalize;
+}

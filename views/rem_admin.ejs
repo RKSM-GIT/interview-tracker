@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interview Tracker</title>
+    <link rel="stylesheet" href="css/Grid.css" />
+    <link rel="stylesheet" href="css/styles_rem.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <%- include("./partials/navCSS.ejs") %>
+    <%- include("./partials/footerCSS.ejs") %>
+    <%- include("./partials/notFoundCSS.ejs") %>
+  </head>
+
+  <body>
+    <!-- Nav Bar -->
+    <%- include("./partials/nav.ejs") %>
+
+    <!-- Add/Admins -->
+    <section class="add">
+      <h2>Current Admins</h2>
+
+      <div class="row back">
+        <a href="/admin" class="button"><ion-icon name="arrow-back-outline"></ion-icon>Back</a>
+      </div>
+
+      <div class="row">
+
+        <%  let ct = 0;                     %>
+        <%  allUsers.forEach(i => {         %>
+        <%    if(i.isAdmin){                %>
+
+        <div id="Box-<%= ct %>" class="box">
+          <div class="left"><%= i.name %></div>
+          <div class="left two"><%= i.email %></div>
+                <% if(i.email !== user.email && i.email !== "m.r.k.s@iitg.ac.in") { %>
+          <a href="#" class="right">Remove Admin</a> 
+                <% } %>
+        </div>
+        <%      ct++;   %>
+        <%    }         %>
+        <%  });         %>
+
+        <!-- Not Found -->
+        <%  if(ct==0){                                      %>
+          <%- include("./partials/notFound.ejs") %>
+        <%  }                                               %>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <%- include("./partials/footer.ejs") %>
+
+  </body>
+
+  <!--****************JavaScript*******************-->
+  <script>
+    const boxes = document.querySelectorAll(".box");
+    boxes.forEach(box => {
+      const email = box.querySelector(".two").textContent;
+      const bttnA = box.querySelector(".right");
+
+      if(bttnA){
+        bttnA.addEventListener("click", async (e) => {
+          e.preventDefault();
+
+          try {
+            const res = await fetch("/remove", {
+              method: "POST",
+              body: JSON.stringify({ email }),
+              headers: { "Content-Type": "application/json" },
+            });
+            const data = await res.json();
+            location.assign("/remove");
+
+          } catch (err) {
+            console.log(err);
+          }
+
+        });
+      }
+    });
+  </script>
+  <%- include("./partials/ion-icons-script.ejs") %>
+</html>

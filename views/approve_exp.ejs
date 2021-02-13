@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interview Tracker</title>
+    <link rel="stylesheet" href="css/Grid.css" />
+    <link rel="stylesheet" href="css/styles_appr_exp.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <%- include("./partials/navCSS.ejs") %>
+    <%- include("./partials/footerCSS.ejs") %>
+    <%- include("./partials/notFoundCSS.ejs") %>
+  </head>
+
+  <body>
+    <!-- Nav Bar -->
+    <%- include("./partials/nav.ejs") %>
+
+    
+
+    <!-- Approve Experience -->
+    <section class="main_section">
+      <h2>Approve Interview Experiences</h2>
+
+      <div class="row back">
+        <a href="/admin" class="button"><ion-icon name="arrow-back-outline"></ion-icon>Back</a>
+      </div>
+
+      
+
+      <div class="row">
+
+      <%  let ct = 0,k=-1,l=-1;       %>
+      <%  exp.companies.forEach(comp => {       %>
+      <%    k++;   l = -1;                             %>
+      <%    comp.experiences.forEach( i => {       %>
+      <%      let u; l++;      %>
+      <%      if(!i.approved){       %>
+      <%        for(let j=0; j<allUsers.length; j++){       %>
+      <%          if(allUsers[j].email === i.author){       %>
+      <%            u = allUsers[j];       %>
+      <%            break;       %>
+      <%          }       %>
+      <%        }       %>
+
+      
+        <div id="box-<%= ct %>" class="box">
+          <div class="row1">
+            <div style="background-image : url('<%= u.pic %>');" class="profilePic"></div>
+            <div class="box1">
+              <h3 class="title"><%= i.title %></h3>
+              <h6 class="name"><%= u.name %></h6>
+              <div class="hidden A"><%= k %></div>
+              <div class="hidden B"><%= l %></div>
+            </div>
+          </div>
+          <div class="clr"></div>
+          <div class="midrow"><p>Year : <%= u.year %></p><p>Branch : <%= u.branch %></p><p class="C">Company : <%= comp.companyName %></p></div>
+          <div class="row2">
+            <div class="longcopy">
+              <%= i.experience %>
+            </div>
+            <button class="hidden">See More</button>
+            <br>
+            <a href="#" class="Approve">Approve Experience</a>
+          </div>
+        </div>
+      <%      ct++;       %>
+      <%      }        %>
+      <%    });       %>
+      <%  });       %>
+
+        <!-- Not Found -->
+        <%  if(ct==0){                                      %>
+            <%- include("./partials/notFound.ejs") %>
+        <%  }                                               %>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <%- include("./partials/footer.ejs") %>
+
+  </body>
+
+  
+
+  <!--****************JavaScript*******************-->
+
+  <script src="../js/see_more.js"></script>
+  <script>
+    const boxes = document.querySelectorAll(".box");
+    boxes.forEach(box => {
+      const bttnA = box.querySelector(".Approve");
+      const k = box.querySelector(".A").textContent;
+      const l = box.querySelector(".B").textContent;
+      
+      bttnA.addEventListener("click",async (e) => {
+        e.preventDefault();
+
+        try {
+          const res = await fetch("/approve_exp", {
+            method: "POST",
+            body: JSON.stringify({ k,l }),
+            headers: { "Content-Type": "application/json" },
+        });
+          const data = await res.json();
+          location.assign("/approve_exp");
+
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    });
+
+    
+
+    //const companyName =  ;
+  </script>
+  <%- include("./partials/ion-icons-script.ejs") %>
+</html>
