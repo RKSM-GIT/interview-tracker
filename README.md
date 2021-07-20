@@ -4,8 +4,8 @@ Interview Tracker is a easy to use, community driven website aimed at helping st
 
   - View and share important interview coding problems of various topics including trees, graphs, dynamic programming, greedy algorithm and many more.
   - Study and share the first-person Interview experiences of students who have faced the interviews themselves in a blog like fashion.
-  - Has login and signup features.
-  - Has a cutom Admin panel to manage the website.
+  - Implemented login and signup features using JSONWebToken.
+  - Implemented a cutom Admin panel to manage the website, add/remove/view admins, and approve/disapprove request to add new interview questions and experiences.
 
 ### Tech
 
