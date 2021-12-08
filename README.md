@@ -86,7 +86,7 @@ You may add/remove an admin and approve question as well as interview experience
 
 This page contain information about the people who have made this website.
 
-   [repo]: <https://github.com/RKSM-GIT/interview-tracker>
+   [repo]: <https://github.com/RKSM-GIT/covid-bulletin>
    [git-repo-url]: <https://github.com/joemccann/dillinger.git>
    [john gruber]: <http://daringfireball.net>
    [df1]: <http://daringfireball.net/projects/markdown/>
