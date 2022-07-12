@@ -30,7 +30,7 @@ Dillinger requires [Node.js](https://nodejs.org/) v4+ to run.
 5. Run the website at http://localhost:3000/
 
 ```sh
-$ npm install -d
+$ npm install
 $ node app
 ```
 
